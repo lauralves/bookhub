@@ -2,7 +2,7 @@
 
 ## Architecture bookhub
 
-<img width="875" height="857" alt="arch-bookhub" src="src/architecture/architecture-bookhub.png" />
+<img width="875" height="857" alt="arch-bookhub" src="architecture/architecture-bookhub.png" />
 
 ## Service stacks
 
