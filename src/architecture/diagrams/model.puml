@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "com.br.bookhub" <<Frame>> {
+class Book {
+ - sq_book: Long {id}
+ - name: String
+ - published_date: LocalDate
+ - total_pages: Integer
+ -- tagged values --
+ <b> @table.name:</b> book
+ <b> @sequence.name:</b> sq_book
+}
+
+class Author {
+ - sq_author: Long {id}
+ - name: String
+ -- tagged values --
+ <b> @table.name:</b> author
+ <b> @sequence.name:</b> sq_author
+ <b> @rule.unique:</b> name
+}
+
+enum Genre {
+ - name: String
+}
+
+class User {
+ - sq_user: Long {id}
+ - name: String
+ - cpf: Integer
+ - birth_date: LocalDate
+ - email: String
+ -- tagged values --
+ <b> @table.name:</b> user
+ <b> @sequence.name:</b> sq_user
+ <b> @rule.unique:</b> cpf, email
+
+}
+
+class Read {
+ - sq_read: Long {id}
+ - start_date: LocalDateTime
+ - end_date: LocalDateTime
+ - pages_read: Integer
+ -- tagged values --
+ <b> @table.name:</b> user
+ <b> @sequence.name:</b> sq_user
+ <b> @status.allowed:</b> PLANNING_READ | NOT_STARTED | READING |
+  ON_HOLD | NOT_FINISH | FINISHED
+}
+
+class Review {
+ - sq_review: Long {id}
+ - stars: Integer
+ - overview: String
+ -- tagged values --
+ <b> @table.name:</b> review
+ <b> @sequence.name:</b> sq_review
+}
+
+Book "1...*"-->"1" Author
+Book -u- Genre
+Read "0...*"-R->"1" Book
+Read "0...*"-->"1" User
+Read "1"<-U-"0...*" Review
+
+}
+@enduml
+
+
+
+
+
+
+
+
+
+
+
