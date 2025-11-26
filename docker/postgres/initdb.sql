@@ -1,1 +1,1 @@
-CREATE DATABASE bookhub;
+select now();
