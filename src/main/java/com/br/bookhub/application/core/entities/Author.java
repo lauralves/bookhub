@@ -1,7 +1,6 @@
-package com.br.bookhub.core.entities;
+package com.br.bookhub.application.core.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -19,31 +18,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "user")
+@Table(name = "author")
 @ToString
 @EqualsAndHashCode
-public class User {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "sq_user", nullable = false, updatable = false, unique = true)
+    @Column(name = "sq_author", nullable = false, updatable = false, unique = true)
     private Long id;
 
     @NotBlank
-    @Column(name = "name")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
-
-    @NotBlank
-    @Column(name = "cpf")
-    private String cpf;
-
-    @NotBlank
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
-
-    @NotBlank
-    @Column(name = "email")
-    @Email
-    private String email;
 
     @CreatedDate
     private LocalDateTime createdAt;

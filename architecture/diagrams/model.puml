@@ -52,7 +52,7 @@ class Read {
 
 class Review {
  - sq_review: Long {id}
- - stars: Integer
+ - star_rating: Integer
  - overview: String
  -- tagged values --
  <b> @table.name:</b> review

@@ -1,6 +1,7 @@
-package com.br.bookhub.core.entities;
+package com.br.bookhub.application.core.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -18,13 +19,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "book")
+@Table(name = "user")
 @ToString
 @EqualsAndHashCode
-public class Book {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "sq_book", nullable = false, updatable = false, unique = true)
+    @Column(name = "sq_user", nullable = false, updatable = false, unique = true)
     private Long id;
 
     @NotBlank
@@ -32,12 +33,17 @@ public class Book {
     private String name;
 
     @NotBlank
-    @Column(name = "published_date")
-    private LocalDate publishedDate;
+    @Column(name = "cpf")
+    private String cpf;
 
     @NotBlank
-    @Column(name = "total_pages")
-    private Integer totalPages;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
+
+    @NotBlank
+    @Column(name = "email")
+    @Email
+    private String email;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -50,8 +56,4 @@ public class Book {
 
     @LastModifiedBy
     private String updatedBy;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sq_author", nullable = false)
-    private Author author;
 }

@@ -1,4 +1,4 @@
-package com.br.bookhub.core.entities;
+package com.br.bookhub.application.core.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +9,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -28,8 +27,8 @@ public class Review {
     private Long id;
 
     @NotBlank
-    @Column(name = "stars")
-    private Integer stars;
+    @Column(name = "star_rating")
+    private Integer starRating;
 
     @Column(name = "overview")
     private String overview;

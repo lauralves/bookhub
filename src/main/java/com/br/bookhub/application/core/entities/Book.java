@@ -1,4 +1,4 @@
-package com.br.bookhub.core.entities;
+package com.br.bookhub.application.core.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -18,18 +18,26 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "author")
+@Table(name = "book")
 @ToString
 @EqualsAndHashCode
-public class Author {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "sq_author", nullable = false, updatable = false, unique = true)
+    @Column(name = "sq_book", nullable = false, updatable = false, unique = true)
     private Long id;
 
     @NotBlank
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name")
     private String name;
+
+    @NotBlank
+    @Column(name = "published_date")
+    private LocalDate publishedDate;
+
+    @NotBlank
+    @Column(name = "total_pages")
+    private Integer totalPages;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -42,4 +50,18 @@ public class Author {
 
     @LastModifiedBy
     private String updatedBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sq_author", nullable = false)
+    private Author author;
+
+    public void update(Book book) {
+        if (book.getPublishedDate().isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Publish date cannot be in the future");
+        }
+        this.setPublishedDate(book.getPublishedDate());
+        this.setName(book.getName());
+        this.setAuthor(book.getAuthor());
+        this.setTotalPages(book.getTotalPages());
+    }
 }

@@ -1,4 +1,4 @@
-package com.br.bookhub.core.entities;
+package com.br.bookhub.application.core.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
