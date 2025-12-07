@@ -1,5 +1,8 @@
 package com.br.bookhub.application.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -23,8 +26,9 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sq_author", nullable = false, updatable = false, unique = true)
+    @JsonProperty("sq_author")
     private Long id;
 
     @NotBlank

@@ -1,7 +1,9 @@
 package com.br.bookhub.application.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,6 +27,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "sq_book", nullable = false, updatable = false, unique = true)
+    @JsonProperty("sq_book")
     private Long id;
 
     @NotBlank
@@ -52,7 +55,8 @@ public class Book {
     private String updatedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sq_author", nullable = false)
+    @JoinColumn(name = "sq_author", referencedColumnName = "sq_author")
+    @NotNull
     private Author author;
 
     public void update(Book book) {
