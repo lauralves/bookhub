@@ -23,7 +23,8 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Read {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "read_sequence")
+    @SequenceGenerator(name = "read_sequence", sequenceName = "read_sequence", allocationSize = 1)
     @Column(name = "sq_read", nullable = false, updatable = false, unique = true)
     private Long id;
 

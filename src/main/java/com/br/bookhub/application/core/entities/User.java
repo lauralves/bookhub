@@ -24,7 +24,8 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @Column(name = "sq_user", nullable = false, updatable = false, unique = true)
     private Long id;
 

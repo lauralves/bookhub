@@ -25,7 +25,8 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_sequence")
+    @SequenceGenerator(name = "book_sequence", sequenceName = "book_sequence", allocationSize = 1)
     @Column(name = "sq_book", nullable = false, updatable = false, unique = true)
     @JsonProperty("sq_book")
     private Long id;

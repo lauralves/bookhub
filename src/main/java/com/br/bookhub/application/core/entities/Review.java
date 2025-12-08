@@ -22,7 +22,8 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_sequence")
+    @SequenceGenerator(name = "review_sequence", sequenceName = "review_sequence", allocationSize = 1)
     @Column(name = "sq_review", nullable = false, updatable = false, unique = true)
     private Long id;
 

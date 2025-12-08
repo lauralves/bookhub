@@ -26,7 +26,8 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_sequence")
+    @SequenceGenerator(name = "author_sequence", sequenceName = "author_sequence", allocationSize = 1)
     @Column(name = "sq_author", nullable = false, updatable = false, unique = true)
     @JsonProperty("sq_author")
     private Long id;
