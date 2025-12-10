@@ -6,7 +6,7 @@ CREATE SEQUENCE IF NOT EXISTS read_sequence START WITH 1 INCREMENT BY 50;
 
 CREATE SEQUENCE IF NOT EXISTS review_sequence START WITH 1 INCREMENT BY 50;
 
-CREATE SEQUENCE IF NOT EXISTS user_sequence START WITH 1 INCREMENT BY 50;
+CREATE SEQUENCE IF NOT EXISTS reader_sequence START WITH 1 INCREMENT BY 50;
 
 CREATE TABLE author
 (
@@ -43,14 +43,14 @@ CREATE TABLE read
     updated_at TIMESTAMP WITHOUT TIME ZONE,
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
-    sq_user    BIGINT NOT NULL,
+    sq_reader   BIGINT NOT NULL,
     CONSTRAINT pk_read PRIMARY KEY (sq_read)
 );
 
 CREATE TABLE review
 (
     sq_review  BIGINT NOT NULL,
-    stars      INTEGER,
+    star_rating INTEGER,
     overview   VARCHAR(255),
     created_at TIMESTAMP WITHOUT TIME ZONE,
     updated_at TIMESTAMP WITHOUT TIME ZONE,
@@ -60,9 +60,9 @@ CREATE TABLE review
     CONSTRAINT pk_review PRIMARY KEY (sq_review)
 );
 
-CREATE TABLE "user"
+CREATE TABLE reader
 (
-    sq_user    BIGINT NOT NULL,
+    sq_reader    BIGINT NOT NULL,
     name       VARCHAR(255),
     cpf        VARCHAR(255),
     birth_date date,
@@ -71,7 +71,7 @@ CREATE TABLE "user"
     updated_at TIMESTAMP WITHOUT TIME ZONE,
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
-    CONSTRAINT pk_user PRIMARY KEY (sq_user)
+    CONSTRAINT pk_reader PRIMARY KEY (sq_reader)
 );
 
 ALTER TABLE author
@@ -81,7 +81,7 @@ ALTER TABLE book
     ADD CONSTRAINT FK_BOOK_ON_SQ_AUTHOR FOREIGN KEY (sq_author) REFERENCES author (sq_author);
 
 ALTER TABLE read
-    ADD CONSTRAINT FK_READ_ON_SQ_USER FOREIGN KEY (sq_user) REFERENCES "user" (sq_user);
+    ADD CONSTRAINT FK_READ_ON_SQ_READER FOREIGN KEY (sq_reader) REFERENCES reader (sq_reader);
 
 ALTER TABLE review
     ADD CONSTRAINT FK_REVIEW_ON_SQ_READ FOREIGN KEY (sq_read) REFERENCES read (sq_read);

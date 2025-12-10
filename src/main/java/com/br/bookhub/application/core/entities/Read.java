@@ -52,6 +52,13 @@ public class Read {
     private String updatedBy;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "sq_user")
-    private User user;
+    @JoinColumn(name = "sq_reader")
+    private Reader reader;
+
+    public void update(Read read) {
+        this.startDate = read.getStartDate();
+        this.endDate = read.getEndDate();
+        this.updatedAt = read.getUpdatedAt();
+        this.pagesRead = read.getPagesRead();
+    }
 }

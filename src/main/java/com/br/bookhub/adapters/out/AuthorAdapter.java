@@ -1,11 +1,8 @@
 package com.br.bookhub.adapters.out;
 
 import com.br.bookhub.adapters.out.repository.AuthorRepository;
-import com.br.bookhub.adapters.out.repository.BookRepository;
-import com.br.bookhub.application.core.entities.Author;
 import com.br.bookhub.application.core.entities.Author;
 import com.br.bookhub.application.ports.AuthorPort;
-import com.br.bookhub.application.ports.BookPort;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

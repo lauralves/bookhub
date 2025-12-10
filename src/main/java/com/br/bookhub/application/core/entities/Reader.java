@@ -1,8 +1,8 @@
 package com.br.bookhub.application.core.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,31 +19,34 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "user")
+@Table(name = "reader")
 @ToString
 @EqualsAndHashCode
-public class User {
+public class Reader {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @Column(name = "sq_user", nullable = false, updatable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reader_sequence")
+    @SequenceGenerator(name = "reader_sequence", sequenceName = "reader_sequence", allocationSize = 1)
+    @Column(name = "sq_reader", nullable = false, updatable = false, unique = true)
     private Long id;
 
     @NotBlank
     @Column(name = "name")
+    @NotNull
     private String name;
 
     @NotBlank
     @Column(name = "cpf")
+    @NotNull
     private String cpf;
 
     @NotBlank
     @Column(name = "birth_date")
+    @NotNull
     private LocalDate birthDate;
 
     @NotBlank
     @Column(name = "email")
-    @Email
+    @NotNull
     private String email;
 
     @CreatedDate
