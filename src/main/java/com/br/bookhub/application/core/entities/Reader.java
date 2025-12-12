@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 public class Reader {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reader_sequence")
     @SequenceGenerator(name = "reader_sequence", sequenceName = "reader_sequence", allocationSize = 1)

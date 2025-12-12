@@ -74,6 +74,13 @@ CREATE TABLE reader
     CONSTRAINT pk_reader PRIMARY KEY (sq_reader)
 );
 
+CREATE TABLE user_detail
+(
+    email    VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_user_detail PRIMARY KEY (email)
+);
+
 ALTER TABLE author
     ADD CONSTRAINT uc_author_name UNIQUE (name);
 
