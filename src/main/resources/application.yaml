@@ -19,9 +19,9 @@ spring:
         generate_statistics: false
 jwt:
   public:
-    key: classpath:keys/public.pem
+    key: ${JWT_PUBLIC_KEY:classpath:keys/public.pem}
   private:
-    key: classpath:keys/private.pem
+    key: ${JWT_PRIVATE_KEY:classpath:keys/private.pem}
 server:
   port: 8080
   servlet:
