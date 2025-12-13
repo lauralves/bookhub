@@ -20,8 +20,6 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(email, password)
         );
         ;
-        var jwt =  jwtService.generateToken(authentication);
-        log.info("jwt => {}", jwt);
-        return jwt;
+        return jwtService.generateToken(authentication);
     }
 }

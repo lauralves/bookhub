@@ -1,5 +1,7 @@
 package com.br.bookhub.adapters.in.commons;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.io.InputStream;
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPrivateKey;
@@ -8,7 +10,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-public class KeyUtils {
+public class SecurityUtils {
 
     public static RSAPublicKey readPublicKey(InputStream is) throws Exception {
         String pem = new String(is.readAllBytes());
@@ -33,4 +35,5 @@ public class KeyUtils {
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded);
         return (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(keySpec);
     }
+
 }

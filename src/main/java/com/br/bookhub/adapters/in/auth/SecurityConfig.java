@@ -1,6 +1,6 @@
 package com.br.bookhub.adapters.in.auth;
 
-import com.br.bookhub.adapters.in.commons.KeyUtils;
+import com.br.bookhub.adapters.in.commons.SecurityUtils;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -41,8 +41,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/auth/**")
-                                .permitAll().anyRequest().authenticated())
+                        auth
+                                .requestMatchers("/auth/**").permitAll()
+                                .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(conf -> conf.jwt(
                         jwt -> {
@@ -63,12 +64,12 @@ public class SecurityConfig {
 
     @Bean
     public RSAPublicKey publicKey() throws Exception {
-        return KeyUtils.readPublicKey(publicKey.getInputStream());
+        return SecurityUtils.readPublicKey(publicKey.getInputStream());
     }
 
     @Bean
     public RSAPrivateKey privateKey() throws Exception {
-        return KeyUtils.readPrivateKey(privateKey.getInputStream());
+        return SecurityUtils.readPrivateKey(privateKey.getInputStream());
     }
 
     @Bean
