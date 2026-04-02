@@ -11,42 +11,74 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@EntityListeners(AuditingEntityListener.class)
-@Table(name = "review")
-@ToString
-@EqualsAndHashCode
 public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_sequence")
-    @SequenceGenerator(name = "review_sequence", sequenceName = "review_sequence", allocationSize = 1)
-    @Column(name = "sq_review", nullable = false, updatable = false, unique = true)
+
     private Long id;
-
-    @NotBlank
-    @Column(name = "star_rating")
     private Integer starRating;
-
-    @Column(name = "overview")
     private String overview;
-
-    @CreatedDate
     private LocalDateTime createdAt;
-
-    @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    @CreatedBy
     private String createdBy;
-
-    @LastModifiedBy
     private String updatedBy;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "sq_read")
     private Read read;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getStarRating() {
+        return starRating;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public Read getRead() {
+        return read;
+    }
+
+    public void setStarRating(Integer starRating) {
+        this.starRating = starRating;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public void setRead(Read read) {
+        this.read = read;
+    }
 }

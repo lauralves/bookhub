@@ -4,6 +4,7 @@ import com.br.bookhub.adapters.out.AuthorAdapter;
 import com.br.bookhub.adapters.out.BookAdapter;
 import com.br.bookhub.application.core.entities.Author;
 import com.br.bookhub.application.core.entities.Author;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "api/author")
 @AllArgsConstructor
+@SecurityRequirement(name = "authorization")
 public class AuthorController {
 
     private AuthorAdapter authorAdapter;

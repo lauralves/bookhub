@@ -1,64 +1,93 @@
 package com.br.bookhub.application.core.entities;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@EntityListeners(AuditingEntityListener.class)
-@Table(name = "reader")
-@ToString
-@EqualsAndHashCode
 public class Reader {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reader_sequence")
-    @SequenceGenerator(name = "reader_sequence", sequenceName = "reader_sequence", allocationSize = 1)
-    @Column(name = "sq_reader", nullable = false, updatable = false, unique = true)
     private Long id;
-
-    @NotBlank
-    @Column(name = "name")
-    @NotNull
     private String name;
-
-    @NotBlank
-    @Column(name = "cpf")
-    @NotNull
     private String cpf;
-
-    @NotBlank
-    @Column(name = "birth_date")
-    @NotNull
     private LocalDate birthDate;
-
-    @NotBlank
-    @Column(name = "email")
-    @NotNull
     private String email;
-
-    @CreatedDate
     private LocalDateTime createdAt;
-
-    @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    @CreatedBy
     private String createdBy;
-
-    @LastModifiedBy
     private String updatedBy;
+
+    public Reader(){}
+    public Reader(String updatedBy, String createdBy, LocalDateTime updatedAt, LocalDateTime createdAt, String name, String cpf, LocalDate birthDate, String email, Long id) {
+        this.name = name;
+        this.cpf = cpf;
+        this.birthDate = birthDate;
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
 }

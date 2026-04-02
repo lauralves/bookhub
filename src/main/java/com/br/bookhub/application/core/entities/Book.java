@@ -1,72 +1,95 @@
 package com.br.bookhub.application.core.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@EntityListeners(AuditingEntityListener.class)
-@Table(name = "book")
-@ToString
-@EqualsAndHashCode
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_sequence")
-    @SequenceGenerator(name = "book_sequence", sequenceName = "book_sequence", allocationSize = 1)
-    @Column(name = "sq_book", nullable = false, updatable = false, unique = true)
-    @JsonProperty("sq_book")
+
     private Long id;
-
-    @NotBlank
-    @Column(name = "name")
     private String name;
-
-    @NotBlank
-    @Column(name = "published_date")
     private LocalDate publishedDate;
-
-    @NotBlank
-    @Column(name = "total_pages")
     private Integer totalPages;
-
-    @CreatedDate
     private LocalDateTime createdAt;
-
-    @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    @CreatedBy
     private String createdBy;
-
-    @LastModifiedBy
     private String updatedBy;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sq_author", referencedColumnName = "sq_author")
-    @NotNull
     private Author author;
 
-    public void update(Book book) {
-        if (book.getPublishedDate().isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("Publish date cannot be in the future");
-        }
-        this.setPublishedDate(book.getPublishedDate());
-        this.setName(book.getName());
-        this.setAuthor(book.getAuthor());
-        this.setTotalPages(book.getTotalPages());
+    public Book(){}
+    public Book(Author author, String updatedBy, String createdBy, LocalDateTime updatedAt, LocalDateTime createdAt, Integer totalPages, LocalDate publishedDate, String name, Long id) {
+        this.author = author;
+        this.updatedBy = updatedBy;
+        this.updatedAt = updatedAt;
+        this.totalPages = totalPages;
+        this.publishedDate = publishedDate;
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(LocalDate publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public Integer getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
