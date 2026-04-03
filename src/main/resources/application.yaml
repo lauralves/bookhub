@@ -1,6 +1,8 @@
 spring:
   application:
-    name: "bookhub"
+    name: "@project.name@"
+    version: "@project.version@"
+    description: "@project.description@"
   flyway:
     enabled: true
   datasource:
@@ -28,3 +30,7 @@ server:
     context-path: /bookhub
   error:
     include-message: always
+springdoc:
+  swagger-ui:
+    path: "/index.html"
+

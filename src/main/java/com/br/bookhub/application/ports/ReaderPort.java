@@ -1,6 +1,6 @@
 package com.br.bookhub.application.ports;
 
-import com.br.bookhub.application.core.entities.Reader;
+import com.br.bookhub.core.domain.entities.Reader;
 
 public interface ReaderPort {
 

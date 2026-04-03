@@ -1,6 +1,6 @@
 package com.br.bookhub.application.ports;
 
-import com.br.bookhub.application.core.entities.Review;
+import com.br.bookhub.core.domain.entities.Review;
 
 public interface ReviewPort {
 
