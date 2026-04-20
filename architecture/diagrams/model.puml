@@ -2,18 +2,19 @@
 'https://plantuml.com/class-diagram
 
 package "com.br.bookhub" <<Frame>> {
+
 class Book {
- - sq_book: Long {id}
+ - id: Long
  - name: String
- - published_date: LocalDate
- - total_pages: Integer
+ - publishedDate: LocalDate
+ - totalPages: Integer
  -- tagged values --
  <b> @table.name:</b> book
  <b> @sequence.name:</b> sq_book
 }
 
 class Author {
- - sq_author: Long {id}
+ - id: Long
  - name: String
  -- tagged values --
  <b> @table.name:</b> author
@@ -21,15 +22,17 @@ class Author {
  <b> @rule.unique:</b> name
 }
 
-enum Genre {
+class Genre {
+ - id: Long
  - name: String
 }
 
 class User {
- - sq_user: Long {id}
+ - id: Long
  - name: String
+ - nickname: String
  - cpf: Integer
- - birth_date: LocalDate
+ - birthDate: LocalDate
  - email: String
  -- tagged values --
  <b> @table.name:</b> user
@@ -39,10 +42,10 @@ class User {
 }
 
 class Read {
- - sq_read: Long {id}
- - start_date: LocalDateTime
- - end_date: LocalDateTime
- - pages_read: Integer
+ - id: Long
+ - startDate: LocalDateTime
+ - endDate: LocalDateTime
+ - pagesRead: Integer
  -- tagged values --
  <b> @table.name:</b> user
  <b> @sequence.name:</b> sq_user
@@ -51,8 +54,8 @@ class Read {
 }
 
 class Review {
- - sq_review: Long {id}
- - star_rating: Integer
+ - id: Long {id}
+ - starRating: Integer
  - overview: String
  -- tagged values --
  <b> @table.name:</b> review

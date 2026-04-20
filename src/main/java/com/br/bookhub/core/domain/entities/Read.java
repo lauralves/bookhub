@@ -13,11 +13,11 @@ public class Read {
     private LocalDateTime updatedAt;
     private String createdBy;
     private String updatedBy;
-    private Reader reader;
+    private User user;
 
     public Read(){}
-    public Read(Reader reader, String updatedBy, String createdBy, LocalDateTime updatedAt, LocalDateTime createdAt, LocalDate startDate, LocalDate endDate, Integer pagesRead, Long id) {
-        this.reader = reader;
+    public Read(User user, String updatedBy, String createdBy, LocalDateTime updatedAt, LocalDateTime createdAt, LocalDate startDate, LocalDate endDate, Integer pagesRead, Long id) {
+        this.user = user;
         this.updatedBy = updatedBy;
         this.updatedAt = updatedAt;
         this.startDate = startDate;
@@ -85,12 +85,12 @@ public class Read {
         this.updatedBy = updatedBy;
     }
 
-    public Reader getReader() {
-        return reader;
+    public User getReader() {
+        return user;
     }
 
-    public void setReader(Reader reader) {
-        this.reader = reader;
+    public void setReader(User user) {
+        this.user = user;
     }
 
 

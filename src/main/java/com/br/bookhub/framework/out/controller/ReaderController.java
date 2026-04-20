@@ -1,7 +1,7 @@
 package com.br.bookhub.framework.out.controller;
 
+import com.br.bookhub.core.domain.entities.User;
 import com.br.bookhub.framework.out.ReaderAdapter;
-import com.br.bookhub.core.domain.entities.Reader;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -17,23 +17,23 @@ public class ReaderController {
     private ReaderAdapter readerAdapter;
 
     @GetMapping()
-    public ResponseEntity<Page<Reader>> findAll(@RequestParam(defaultValue = "0") int page,
-                                                @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<Page<User>> findAll(@RequestParam(defaultValue = "0") int page,
+                                              @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(readerAdapter.findAll(page, size));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Reader> findById(@PathVariable Long id) {
+    public ResponseEntity<User> findById(@PathVariable Long id) {
         return ResponseEntity.ok(readerAdapter.findById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Reader> insert(@RequestBody Reader book) {
+    public ResponseEntity<User> insert(@RequestBody User book) {
         return ResponseEntity.ok(readerAdapter.insert(book));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reader> update(@PathVariable Long id, Reader book) {
+    public ResponseEntity<User> update(@PathVariable Long id, User book) {
         return ResponseEntity.ok(readerAdapter.update(id, book));
     }
 

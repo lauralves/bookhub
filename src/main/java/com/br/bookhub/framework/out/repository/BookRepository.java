@@ -1,9 +1,9 @@
 package com.br.bookhub.framework.out.repository;
 
-import com.br.bookhub.core.domain.entities.Book;
+import com.br.bookhub.framework.out.entities.BookEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Long> {
+public interface BookRepository extends JpaRepository<BookEntity, Long> {
 }

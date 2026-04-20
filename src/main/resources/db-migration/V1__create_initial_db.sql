@@ -60,7 +60,7 @@ CREATE TABLE review
     CONSTRAINT pk_review PRIMARY KEY (sq_review)
 );
 
-CREATE TABLE reader
+CREATE TABLE user
 (
     sq_reader    BIGINT NOT NULL,
     name       VARCHAR(255),
@@ -88,7 +88,7 @@ ALTER TABLE book
     ADD CONSTRAINT FK_BOOK_ON_SQ_AUTHOR FOREIGN KEY (sq_author) REFERENCES author (sq_author);
 
 ALTER TABLE read
-    ADD CONSTRAINT FK_READ_ON_SQ_READER FOREIGN KEY (sq_reader) REFERENCES reader (sq_reader);
+    ADD CONSTRAINT FK_READ_ON_SQ_READER FOREIGN KEY (sq_reader) REFERENCES user (sq_reader);
 
 ALTER TABLE review
     ADD CONSTRAINT FK_REVIEW_ON_SQ_READ FOREIGN KEY (sq_read) REFERENCES read (sq_read);

@@ -3,10 +3,11 @@ package com.br.bookhub.core.domain.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Reader {
+public class User {
 
     private Long id;
     private String name;
+    private String nickname;
     private String cpf;
     private LocalDate birthDate;
     private String email;
@@ -15,8 +16,8 @@ public class Reader {
     private String createdBy;
     private String updatedBy;
 
-    public Reader(){}
-    public Reader(String updatedBy, String createdBy, LocalDateTime updatedAt, LocalDateTime createdAt, String name, String cpf, LocalDate birthDate, String email, Long id) {
+    public User(){}
+    public User(String updatedBy, String createdBy, LocalDateTime updatedAt, LocalDateTime createdAt, String name, String cpf, LocalDate birthDate, String email, Long id) {
         this.name = name;
         this.cpf = cpf;
         this.birthDate = birthDate;
@@ -89,5 +90,13 @@ public class Reader {
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

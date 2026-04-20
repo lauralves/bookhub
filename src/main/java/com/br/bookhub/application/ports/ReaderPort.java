@@ -1,11 +1,11 @@
 package com.br.bookhub.application.ports;
 
-import com.br.bookhub.core.domain.entities.Reader;
+import com.br.bookhub.core.domain.entities.User;
 
 public interface ReaderPort {
 
-    Reader insert(Reader reader);
-    Reader update(Long id, Reader reader);
+    User insert(User user);
+    User update(Long id, User user);
     void deleteById(Long id);
-    Reader findById(Long id);
+    User findById(Long id);
 }

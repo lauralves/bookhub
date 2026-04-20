@@ -1,5 +1,7 @@
 package com.br.bookhub.framework.out;
 
+import com.br.bookhub.framework.out.entities.ReadEntity;
+import com.br.bookhub.framework.out.factory.ReadFactory;
 import com.br.bookhub.framework.out.repository.ReadRepository;
 import com.br.bookhub.core.domain.entities.Read;
 import com.br.bookhub.application.ports.ReadPort;
@@ -21,7 +23,9 @@ public class ReadAdapter implements ReadPort {
     @Override
     public Read insert(Read read) {
         log.info("Inserting read {}", read);
-        return repository.save(read);
+        ReadEntity entity = ReadFactory.toEntity(read);
+        var saved = repository.save(entity);
+        return ReadFactory.toDomain(saved);
     }
 
     @Override
@@ -29,7 +33,7 @@ public class ReadAdapter implements ReadPort {
         log.info("Updating read {}", read);
         Read savedRead = repository.findById(id)
                         .orElseThrow(() -> new EntityNotFoundException("Read not found"));
-        savedRead.update(read);
+        ReadFactory.update(savedRead, read);
         return repository.save(read);
     }
 

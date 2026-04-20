@@ -1,5 +1,7 @@
 package com.br.bookhub.framework.out;
 
+import com.br.bookhub.framework.out.entities.BookEntity;
+import com.br.bookhub.framework.out.factory.BookFactory;
 import com.br.bookhub.framework.out.repository.AuthorRepository;
 import com.br.bookhub.framework.out.repository.BookRepository;
 import com.br.bookhub.core.domain.entities.Book;
@@ -18,24 +20,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BookAdapter implements BookPort {
 
     private BookRepository bookRepository;
-    private AuthorRepository authorRepository;
 
     @Override
     public Book insert(Book book) {
         log.info("Inserting book {}", book);
-        var author = authorRepository.findById(book.getAuthor().getId())
-                .orElseThrow(() -> new EntityNotFoundException("Author not found with id " + book.getAuthor().getId()));
-        book.setAuthor(author);
-        return bookRepository.save(book);
+        BookEntity entity = BookFactory.toEntity(book);
+        BookEntity saved = bookRepository.save(entity);
+        return BookFactory.toDomain(saved);
     }
 
     @Override
     public Book update(Long id, Book book) {
         log.info("Updating book {}", book);
-        Book savedBook = bookRepository.findById(id)
+        BookEntity savedBook = bookRepository.findById(id)
                         .orElseThrow(() -> new EntityNotFoundException("Book not found"));
-        savedBook.update(book);
-        return bookRepository.save(book);
+        BookEntity entity = BookFactory.update(savedBook, book);
+        bookRepository.save(entity);
+        return BookFactory.toDomain(entity);
     }
 
     @Override
@@ -47,13 +48,15 @@ public class BookAdapter implements BookPort {
     @Override
     public Book findById(Long id) {
         log.info("Finding book with id {}", id);
-        return bookRepository.findById(id)
+        var entity = bookRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with id " + id));
+        return BookFactory.toDomain(entity);
     }
 
-    public Page<Book> findAll(@RequestParam(defaultValue = "0") int page,
-                               @RequestParam(defaultValue = "10") int size) {
+    public Page<Book> findAll(int page,
+                              int size) {
         log.info("Finding all books");
-        return bookRepository.findAll(PageRequest.of(page, size));
+        return bookRepository.findAll(PageRequest.of(page, size))
+                .map(BookFactory::toDomain);
     }
 }

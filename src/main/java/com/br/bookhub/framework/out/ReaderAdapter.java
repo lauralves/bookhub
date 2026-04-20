@@ -1,7 +1,7 @@
 package com.br.bookhub.framework.out;
 
-import com.br.bookhub.framework.out.repository.ReaderRepository;
-import com.br.bookhub.core.domain.entities.Reader;
+import com.br.bookhub.core.domain.entities.User;
+import com.br.bookhub.framework.out.repository.UserRepository;
 import com.br.bookhub.application.ports.ReaderPort;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Component
 public class ReaderAdapter implements ReaderPort {
 
-    private ReaderRepository repository;
+    private UserRepository repository;
     
     @Override
-    public Reader insert(Reader reader) {
-        log.info("Inserting user {}", reader);
-        return repository.save(reader);
+    public User insert(User user) {
+        log.info("Inserting user {}", user);
+        return repository.save(user);
     }
 
     @Override
-    public Reader update(Long id, Reader reader) {
-        log.info("Updating user {}", reader);
-        return repository.save(reader);
+    public User update(Long id, User user) {
+        log.info("Updating user {}", user);
+        return repository.save(user);
     }
 
     @Override
@@ -37,14 +37,14 @@ public class ReaderAdapter implements ReaderPort {
     }
 
     @Override
-    public Reader findById(Long id) {
+    public User findById(Long id) {
         log.info("Finding user with id {}", id);
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
     }
 
-    public Page<Reader> findAll(@RequestParam(defaultValue = "0") int page,
-                                @RequestParam(defaultValue = "10") int size) {
+    public Page<User> findAll(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "10") int size) {
         log.info("Finding all users");
         return repository.findAll(PageRequest.of(page, size));
     }
